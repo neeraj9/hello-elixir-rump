@@ -28,7 +28,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-LOCAL_PATH=$(pwd)
+LOCAL_PATH=$(shell pwd)
 
 ERL_BIN_SEARCH_PATH=$(LOCAL_PATH):$(LOCAL_PATH)/build/rumprun-packages/erlang/build/host_erlangdist/opt/erlang/lib/erlang/erts-7.3.1/bin
 
