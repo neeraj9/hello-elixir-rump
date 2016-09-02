@@ -61,6 +61,15 @@ The last step of generating application iso is as follows:
 
 This will create hello_phoenix-0.0.1.iso.
 
+Enable tap0 interface and enable ip address to it as follows:
+
+    sudo ip tuntap add tap0 mode tap
+    sudo ip addr add 10.0.120.100/24 dev tap0
+    sudo ip link set dev tap0 up
+
+Now you can run the Elixir microkernel as follows:
+
+    PATH=$(pwd)/build/rumprun/rumprun/bin:$PATH ./run-elixir-vm --iso=hello_phoenix-0.0.1.iso
 
 ## Thanks
 
