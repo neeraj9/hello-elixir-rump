@@ -1,0 +1,29 @@
+language: cpp
+cache: ccache
+sudo: required
+dist: trusty
+compiler:
+  - gcc
+os:
+  - linux
+before_install:
+  - echo $LANG
+  - echo $LC_ALL
+  - echo $TRAVIS_JOB_ID
+  - sudo apt-get -qq update
+  - sudo apt-get install -y openssl libssl-dev wget
+script:
+  - make -f Makefile.rumprun .rumprun_packages_built
+  - make -f Makefile.elixir .elixir_built
+  - source setenv.sh
+  - mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez --force
+  - mix local.hex --force
+  - MIX_ENV=prod mix do deps.get, compile, release
+  - /bin/sh create-ukernel.sh
+branches:
+  only:
+    - master
+    - "/^v\\d+\\./"
+env:
+  global:
+    - LANG="en_US.UTF-8"
