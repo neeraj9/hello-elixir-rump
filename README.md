@@ -46,6 +46,13 @@ You will now find the release at the following location.
 
     hello_phoenix/rel/hello_phoenix/releases/0.0.1/hello_phoenix.tar.gz
 
+The last step of generating application iso is as follows:
+
+    ./create-ukernel.sh
+
+This will create hello_phoenix-0.0.1.iso.
+
+
 ## Thanks
 
 Thanks for evaluating this project and hope you find it useful.
