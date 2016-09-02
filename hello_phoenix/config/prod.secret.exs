@@ -14,7 +14,7 @@ config :hello_phoenix, HelloPhoenix.Endpoint,
 # Configure your database
 config :hello_phoenix, HelloPhoenix.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "hello_phoenix_prod",
+  username: {:system, "RDS_USERNAME"},
+  password: {:system, "RDS_PASSWORD"},
+  database: {:system, "RDS_DB_NAME"},
   pool_size: 20

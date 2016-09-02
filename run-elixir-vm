@@ -34,6 +34,9 @@ main() {
   local virt=qemu
   local epmd_opt=-no_epmd
   local epmd_conf=
+  local dbname=postgres_db
+  local dbuser=postgres
+  local dbpass=postgres
   local iso=
 
   local OPTIND=1 # Reset is necessary if getopts was used previously
@@ -52,6 +55,9 @@ main() {
           epmd)          epmd_opt=''                ;;
           cookie=*)      cookie="${OPTARG#*=}"      ;;
           name=*)        name="${OPTARG#*=}"        ;;
+          dbname=*)      dbname="${OPTARG#*=}"      ;;
+          dbuser=*)      dbuser="${OPTARG#*=}"      ;;
+          dbpass=*)      dbpass="${OPTARG#*=}"      ;;
           iso=*)         iso="${OPTARG#*=}"         ;;
           *) show_help
             exit 1
@@ -84,6 +90,9 @@ main() {
      -e ERL_INETRC="$erlpath/erl_inetrc" \
      -e SERVICE_HOSTNAME="$ip" \
      -e PORT="80" \
+     -e RDS_DB_NAME="$dbname" \
+     -e RDS_USERNAME="$dbuser" \
+     -e RDS_PASSWORD="$dbpass" \
      -b ${iso},"$erlpath" \
      -M 256 \
      -g '-serial file:serial.log -nographic -vga none' \
