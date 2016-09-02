@@ -1,5 +1,7 @@
+.idea
 /_build
 /cover
 /deps
 erl_crash.dump
 *.ez
+hello-elixir-rump.iml
