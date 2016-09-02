@@ -80,6 +80,8 @@ main() {
      -I if,vioif,'-net tap,script=no,ifname=tap0' \
      -W if,inet,static,"$ip/24","$gw" \
      -e ERL_INETRC="$erlpath/erl_inetrc" \
+     -e SERVICE_HOSTNAME="$ip" \
+     -e PORT="80" \
      -b ${iso},"$erlpath" \
      -M 256 \
      -g '-serial file:serial.log -nographic -vga none' \
