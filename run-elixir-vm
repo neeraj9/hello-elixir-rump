@@ -75,6 +75,8 @@ main() {
 
   # -e ERTS_LIB_DIR="$erlpath/lib/erlang/lib"
 
+  # the .boot is automatically appended to -boot bootfile
+
   # use "-mode embedded" for initial loading of all the modules (non-default)
   rumprun "$virt" \
      -I if,vioif,'-net tap,script=no,ifname=tap0' \
@@ -87,6 +89,7 @@ main() {
      -g '-serial file:serial.log -nographic -vga none' \
      -i build/rumprun-packages/erlang/beam.hw.bin \
        "-- $epmd_opt -root $erlpath/lib/erlang \
+        -boot $erlpath/lib/erlang/releases/latest/start \
         -boot_var ERTS_LIB_DIR $erlpath/lib/erlang/lib \
         -progname erl -- \
         -home $erlhome -noshell -noinput \

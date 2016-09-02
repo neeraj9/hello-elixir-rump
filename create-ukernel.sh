@@ -21,10 +21,18 @@ mkdir -p ${DEPLOYMENT_PATH}/lib/erlang
 cd ${DEPLOYMENT_PATH}/lib/erlang
 tar -xzf ../../../${PKG}/rel/${PKG}/releases/${VSN}/${PKG}.tar.gz
 cd ../../../
-cd ${DEPLOYMENT_PATH}/lib/erlang/bin
-rm -f start.boot
-ln -s ../releases/${VSN}/start.boot .
+
+# The following is not required after change in run-elixir-vm
+# where -boot is specifically provided.
+#cd ${DEPLOYMENT_PATH}/lib/erlang/bin
+#rm -f start.boot
+#ln -s ../releases/${VSN}/start.boot .
+#cd ../../../../
+
+cd ${DEPLOYMENT_PATH}/lib/erlang/releases
+ln -s ${VSN} latest
 cd ../../../../
+
 cp build/rumprun-packages/erlang/erl_inetrc ${DEPLOYMENT_PATH}/
 cp build/rumprun-packages/erlang/hosts.template ${DEPLOYMENT_PATH}/hosts
 cp build/rumprun-packages/erlang/resolv.conf.template ${DEPLOYMENT_PATH}/resolv.conf
