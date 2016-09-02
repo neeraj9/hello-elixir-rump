@@ -1,5 +1,10 @@
 use Mix.Config
 
+# NOTE: The idea for micro-kernel is to keep same port
+#       for url and server because there is no
+#       other web frontend before application http
+#       server (or cowboy).
+
 # For production, we configure the host to read the PORT
 # from the system environment. Therefore, you will need
 # to set PORT=80 before running your server.
@@ -13,7 +18,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :hello_phoenix, HelloPhoenix.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: {:system, "SERVICE_HOSTNAME"}, port: 80],
+  url: [host: {:system, "SERVICE_HOSTNAME"}, port: {:system, "PORT"}],
   cache_static_manifest: "priv/static/manifest.json"
 
 # Do not print debug messages in production
