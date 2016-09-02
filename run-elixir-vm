@@ -90,6 +90,7 @@ main() {
      -i build/rumprun-packages/erlang/beam.hw.bin \
        "-- $epmd_opt -root $erlpath/lib/erlang \
         -boot $erlpath/lib/erlang/releases/latest/start \
+        -config $erlpath/lib/erlang/releases/latest/sys.config \
         -boot_var ERTS_LIB_DIR $erlpath/lib/erlang/lib \
         -progname erl -- \
         -home $erlhome -noshell -noinput \
