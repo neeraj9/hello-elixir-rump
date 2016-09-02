@@ -19,7 +19,8 @@ use Mix.Config
 config :hello_phoenix, HelloPhoenix.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [host: {:system, "SERVICE_HOSTNAME"}, port: {:system, "PORT"}],
-  cache_static_manifest: "priv/static/manifest.json"
+  cache_static_manifest: "priv/static/manifest.json",
+  code_reloader: false
 
 # Do not print debug messages in production
 config :logger, level: :info
