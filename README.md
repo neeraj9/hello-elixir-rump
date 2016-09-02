@@ -25,12 +25,26 @@ pretty straight-forward (see below).
     cd hello-elixir-rump
     make -f Makefile.rumprun .rumprun_packages_built
     make -f Makefile.elixir .elixir_built
+
+Setup the environment variable so the correct version of erl, elixir, hex,
+mix are used for the subsequent build.
+
+> Note remove $HOME/.mix and $HOME/.hex in case you dont want to
+> get weird errors due to mismatch of different versions of Elixir.
+
     source setenv.sh
     mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez --force
     
-**TODO**
+The following will install Hex, which is needed to build dependency :phoenix
+    mix local.hex --force
 
-> The build will automatically build the Elixir application unikernel.
+Now we are ready to build release of hello_phoenix project
+
+    MIX_ENV=prod mix do deps.get, compile, release
+    
+You will now find the release at the following location.
+
+    hello_phoenix/rel/hello_phoenix/releases/0.0.1/hello_phoenix.tar.gz
 
 ## Thanks
 
