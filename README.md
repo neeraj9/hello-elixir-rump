@@ -23,6 +23,7 @@ pretty straight-forward (see below).
 
     git clone https://github.com/neeraj9/hello-elixir-rump
     cd hello-elixir-rump
+    make -f Makefile.rumprun .rumprun_packages_built
     
 **TODO**
 

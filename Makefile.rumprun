@@ -1,0 +1,71 @@
+# Copyright (c) 2016, Neeraj Sharma <neeraj.sharma@alumni.iitg.ernet.in>.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+# * Redistributions of source code must retain the above copyright
+#   notice, this list of conditions and the following disclaimer.
+#
+# * Redistributions in binary form must reproduce the above copyright
+#   notice, this list of conditions and the following disclaimer in the
+#   documentation and/or other materials provided with the distribution.
+#
+# * The names of its contributors may not be used to endorse or promote
+#   products derived from this software without specific prior written
+#   permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+LOCAL_PATH=$(shell pwd)
+# prefix with local path in search path so that the "erl" application
+# is used by rebar3 (via escript found in host_erlangdist/opt/erlang/lib/erlang/erts-7.3.1/bin)
+# is from this path instead.
+# This will allow running same erlang application on host as the
+# one built for target for maximum consistency.
+BUILT_ERL_BIN_PATH=$(LOCAL_PATH):$(LOCAL_PATH)/build/rumprun-packages/erlang/build/host_erlangdist/opt/erlang/lib/erlang/erts-7.3.1/bin
+
+ERLANG_BASE_META_PATH=$(LOCAL_PATH)/build/rumprun-packages/erlang
+
+build/rumprun:
+	mkdir -p build
+	(cd build; \
+	git clone http://repo.rumpkernel.org/rumprun; \
+	cd rumprun; \
+	git submodule update --init)
+
+.rumprun_tuple: build/rumprun
+	(cd build/rumprun; \
+	CC=cc ./build-rr.sh hw > rumprun-build.log 2>&1; \
+	tail -400 rumprun-build.log)
+	ls build/rumprun/rumprun/bin/ | grep "\-rumprun\-" | head -1 | rev | cut -f 1 -d'/' | cut -f2- -d'-' | rev > .rumprun_tuple
+
+# build/rumprun and build/rumprun-packages could run
+# in parallel so create build directory anyways
+build/rumprun-packages:
+	(mkdir -p build; \
+	 cd build; \
+	 git clone http://repo.rumpkernel.org/rumprun-packages)
+
+build/rumprun-packages/config.mk: build/rumprun-packages .rumprun_tuple
+	(cd build/rumprun-packages; \
+	sed -e "s/RUMPRUN_TOOLCHAIN_TUPLE=.*/RUMPRUN_TOOLCHAIN_TUPLE=$(shell cat .rumprun_tuple)/g" config.mk.dist > config.mk)
+	
+
+.rumprun_packages_built: build/rumprun-packages/config.mk
+	(cd build/rumprun-packages/erlang; \
+	PATH=$(LOCAL_PATH)/build/rumprun/rumprun/bin:$$PATH make; \
+	PATH=$(LOCAL_PATH)/build/rumprun/rumprun/bin:$$PATH make beam.hw.bin)
+	touch .rumprun_packages_built
+
