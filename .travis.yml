@@ -18,6 +18,7 @@ script:
   - source setenv.sh
   - mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez --force
   - mix local.hex --force
+  - mix local.rebar --force
   - cd hello_phoenix
   - MIX_ENV=prod mix do deps.get, compile, phoenix.digest, release
   - cd ..

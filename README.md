@@ -40,6 +40,11 @@ The following will install Hex, which is needed to build dependency :phoenix
 
     mix local.hex --force
 
+In order to compile elixir sources rebar3 is required, so install it
+non-interactively.
+
+    mix local.rebar --force
+
 Now we are ready to build release of hello_phoenix project
 
     cd hello_phoenix
