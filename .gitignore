@@ -5,6 +5,7 @@
 /deps
 erl_crash.dump
 *.ez
+.elixir_built
 .rumprun_tuple
 .rumprun_packages_built
 hello-elixir-rump.iml
