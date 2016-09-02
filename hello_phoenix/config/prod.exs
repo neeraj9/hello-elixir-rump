@@ -22,6 +22,9 @@ config :hello_phoenix, HelloPhoenix.Endpoint,
   cache_static_manifest: "priv/static/manifest.json",
   code_reloader: false
 
+# Note code_reloader is a configuration for phoenix
+
+
 # Do not print debug messages in production
 config :logger, level: :info
 
