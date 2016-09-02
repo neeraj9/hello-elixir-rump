@@ -25,6 +25,8 @@ pretty straight-forward (see below).
     cd hello-elixir-rump
     make -f Makefile.rumprun .rumprun_packages_built
     make -f Makefile.elixir .elixir_built
+    source setenv.sh
+    mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
     
 **TODO**
 
