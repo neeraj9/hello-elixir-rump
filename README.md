@@ -36,6 +36,7 @@ mix are used for the subsequent build.
     mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez --force
     
 The following will install Hex, which is needed to build dependency :phoenix
+
     mix local.hex --force
 
 Now we are ready to build release of hello_phoenix project
