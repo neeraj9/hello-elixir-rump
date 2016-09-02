@@ -17,4 +17,6 @@ config :hello_phoenix, HelloPhoenix.Repo,
   username: {:system, "RDS_USERNAME"},
   password: {:system, "RDS_PASSWORD"},
   database: {:system, "RDS_DB_NAME"},
+  hostname: {:system, "RDS_HOSTNAME"},
+  port: {:system, "RDS_PORT"},
   pool_size: 20
