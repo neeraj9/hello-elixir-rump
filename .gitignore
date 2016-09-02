@@ -1,6 +1,5 @@
 .idea
 /build
-*/_build
 /cover
 /deps
 erl_crash.dump
