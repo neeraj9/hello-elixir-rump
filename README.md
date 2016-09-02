@@ -41,7 +41,9 @@ The following will install Hex, which is needed to build dependency :phoenix
 
 Now we are ready to build release of hello_phoenix project
 
+    cd hello_phoenix
     MIX_ENV=prod mix do deps.get, compile, release
+    cd ..
     
 You will now find the release at the following location.
 
