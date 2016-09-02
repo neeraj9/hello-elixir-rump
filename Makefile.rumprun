@@ -65,7 +65,8 @@ build/rumprun-packages/config.mk: build/rumprun-packages .rumprun_tuple
 
 .rumprun_packages_built: build/rumprun-packages/config.mk
 	(cd build/rumprun-packages/erlang; \
-	PATH=$(LOCAL_PATH)/build/rumprun/rumprun/bin:$$PATH make; \
+	PATH=$(LOCAL_PATH)/build/rumprun/rumprun/bin:$$PATH make > rumprun-packages-build.log 2>&1; \
+	tail -100 rumprun-packages-build.log; \
 	PATH=$(LOCAL_PATH)/build/rumprun/rumprun/bin:$$PATH make beam.hw.bin)
 	touch .rumprun_packages_built
 
