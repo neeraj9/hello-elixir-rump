@@ -19,6 +19,9 @@ Usage: "${0##*/}" [-h] ...
     --epmd         Enable Epmd. Requires the following options:
     --cookie       Set a specific cookie. (Default: mycookie)
     --name         Set a different name. (Default: rumprun)
+    --dbname       Set database name. (Default: postgres_db)
+    --dbuser       Set database username. (Default: postgres)
+    --dbpass       Set database password. (Default: postgres)
     --iso          Set an iso filename.
 
 EOF
