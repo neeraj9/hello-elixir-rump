@@ -33,9 +33,10 @@ cd ${DEPLOYMENT_PATH}/lib/erlang/releases
 ln -s ${VSN} latest
 cd ../../../../
 
-cp build/rumprun-packages/erlang/erl_inetrc ${DEPLOYMENT_PATH}/
-cp build/rumprun-packages/erlang/hosts.template ${DEPLOYMENT_PATH}/hosts
-cp build/rumprun-packages/erlang/resolv.conf.template ${DEPLOYMENT_PATH}/resolv.conf
+ERLANG_DIST_PATH=build/rumprun-packages/erlang/build/erlangdist/opt/erlang
+cp ${ERLANG_DIST_PATH}/erl_inetrc ${DEPLOYMENT_PATH}/
+cp ${ERLANG_DIST_PATH}/hosts.template ${DEPLOYMENT_PATH}/hosts
+cp ${ERLANG_DIST_PATH}/resolv.conf.template ${DEPLOYMENT_PATH}/resolv.conf
 mkdir -p ${DEPLOYMENT_PATH}/lib/erlang/lib/setnodename-0.0.1/ebin
 cp build/rumprun-packages/erlang/examples/setnodename/*.beam ${DEPLOYMENT_PATH}/lib/erlang/lib/setnodename-${VSN}/ebin/
 
