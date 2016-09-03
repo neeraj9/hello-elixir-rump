@@ -22,8 +22,6 @@ Usage: "${0##*/}" [-h] ...
     --dbname       Set database name. (Default: postgres_db)
     --dbuser       Set database username. (Default: postgres)
     --dbpass       Set database password. (Default: postgres)
-    --dbhost       Set database hostname. (Default: 10.0.120.100)
-    --dbport       Set database port. (Default: 5432)
     --iso          Set an iso filename.
 
 EOF
@@ -42,8 +40,6 @@ main() {
   local dbname=postgres_db
   local dbuser=postgres
   local dbpass=postgres
-  local dbhost=10.0.120.100
-  local dbport=5432
   local iso=
 
   local OPTIND=1 # Reset is necessary if getopts was used previously
@@ -65,8 +61,6 @@ main() {
           dbname=*)      dbname="${OPTARG#*=}"      ;;
           dbuser=*)      dbuser="${OPTARG#*=}"      ;;
           dbpass=*)      dbpass="${OPTARG#*=}"      ;;
-          dbhost=*)      dbhost="${OPTARG#*=}"      ;;
-          dbport=*)      dbport="${OPTARG#*=}"      ;;
           iso=*)         iso="${OPTARG#*=}"         ;;
           *) show_help
             exit 1
@@ -102,8 +96,6 @@ main() {
      -e RDS_DB_NAME="$dbname" \
      -e RDS_USERNAME="$dbuser" \
      -e RDS_PASSWORD="$dbpass" \
-     -e RDS_HOSTNAME="$dbhost" \
-     -e RDS_PORT="$dbport" \
      -b ${iso},"$erlpath" \
      -M 256 \
      -g '-serial file:serial.log -nographic -vga none' \

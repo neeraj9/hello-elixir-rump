@@ -17,6 +17,9 @@ config :hello_phoenix, HelloPhoenix.Repo,
   username: {:system, "RDS_USERNAME"},
   password: {:system, "RDS_PASSWORD"},
   database: {:system, "RDS_DB_NAME"},
-  hostname: {:system, "RDS_HOSTNAME"},
-  port: {:system, "RDS_PORT"},
+  hostname: "10.0.120.100",
   pool_size: 20
+
+# NOTE: using hostname as system env doesnt work when running under
+#       virtualization, so this should be set at compile time to
+#       a name which should resolv via dns to ip address.
