@@ -75,6 +75,10 @@ Alternatively, if you dont have kvm but just qemu then do the following:
 
     PATH=$(pwd)/build/rumprun/rumprun/bin:$PATH ./run-elixir-vm --iso=hello_phoenix-0.0.1.iso
 
+The output will stream to serial.log, so open another window and monitor that
+as follows:
+
+    tail -f serial.log
 
 > There is a substantial difference when running the unikernel in kvm (much
 > faster) than simple qemu. Although, qemu does run things reasonably well
