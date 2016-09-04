@@ -69,7 +69,16 @@ Enable tap0 interface and enable ip address to it as follows:
 
 Now you can run the Elixir microkernel as follows:
 
+    PATH=$(pwd)/build/rumprun/rumprun/bin:$PATH ./run-elixir-vm --virt=kvm --iso=hello_phoenix-0.0.1.iso
+
+Alternatively, if you dont have kvm but just qemu then do the following:
+
     PATH=$(pwd)/build/rumprun/rumprun/bin:$PATH ./run-elixir-vm --iso=hello_phoenix-0.0.1.iso
+
+
+> There is a substantial difference when running the unikernel in kvm (much
+> faster) than simple qemu. Although, qemu does run things reasonably well
+> but just slower.
 
 ## Thanks
 
