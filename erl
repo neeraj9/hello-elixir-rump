@@ -39,7 +39,7 @@ fi;
 MYDIR="$(cd `dirname "$SCRIPT"` && pwd -P)"
 
 ROOTDIR="${MYDIR}/build/rumprun-packages/erlang/build/host_erlangdist/opt/erlang/lib/erlang"
-BINDIR=$ROOTDIR/erts-7.3.1/bin
+BINDIR=$ROOTDIR/erts-9.0/bin
 EMU=beam
 PROGNAME=`echo $0 | sed 's/.*\///'`
 export EMU

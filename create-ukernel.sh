@@ -7,7 +7,7 @@ set -x
 PKG=hello_phoenix
 VSN=0.0.1
 
-export PATH=`pwd`:`pwd`/build/rumprun-packages/erlang/build/host_erlangdist/opt/erlang/lib/erlang/erts-7.3.1/bin:`pwd`/build/tools/usr/local/bin:$PATH
+export PATH=`pwd`:`pwd`/build/rumprun-packages/erlang/build/host_erlangdist/opt/erlang/lib/erlang/erts-9.0/bin:`pwd`/build/tools/usr/local/bin:$PATH
 
 DEPLOYMENT_PATH=_deployed-${PKG}-${VSN}
 

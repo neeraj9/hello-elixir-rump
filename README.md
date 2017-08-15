@@ -22,6 +22,12 @@ once the projects starts taking shape. Stay tuned!
 After you are done setting up the development environment the build is
 pretty straight-forward (see below).
 
+> Note that there is a known issue while building RumpRun unikernel
+> under gcc-6, so it is better to stick with gcc-5 for now.
+>
+> You could do that as follows:
+> CC=gcc-5 CXX=g++-5 make -f Makefile.rumprun .rumprun_packages_built
+
     git clone https://github.com/neeraj9/hello-elixir-rump
     cd hello-elixir-rump
     make -f Makefile.rumprun .rumprun_packages_built
