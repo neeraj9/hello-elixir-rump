@@ -56,7 +56,7 @@ build/rumprun:
 build/rumprun-packages:
 	(mkdir -p build; \
 	 cd build; \
-	 git clone http://repo.rumpkernel.org/rumprun-packages --branch dev-erlang-20)
+	 git clone https://github.com/neeraj9/rumprun-packages --branch dev-erlang-20)
 
 build/rumprun-packages/config.mk: build/rumprun-packages .rumprun_tuple
 	(cd build/rumprun-packages; \
