@@ -11,7 +11,7 @@ before_install:
   - echo $LC_ALL
   - echo $TRAVIS_JOB_ID
   - sudo apt-get -qq update
-  - sudo apt-get install -y openssl libssl-dev wget
+  - sudo apt-get install -y openssl libssl-dev wget genisoimage
 script:
   - make -f Makefile.rumprun .rumprun_packages_built
   - make -f Makefile.elixir .elixir_built
